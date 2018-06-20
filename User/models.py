@@ -1,20 +1,48 @@
 from django.db import models
+from enum import  Enum
 
 # Create your models here.
 # User Table
+#enum for User_type
+class UserType(Enum):
+    STD="STUDENT"
+    FLT="FACULTY"
+    USR="USER"
+    ALM="ALUMANY"
+# enum for blood group
+
+class BloodGroup(Enum):
+    OMinus="O-Minus"
+    AMinus = "A-Minus"
+    BMinus = "B-Minus"
+    ABMinus = "AB-Minus"
+    OPlus = "O-Positive"
+    APlus = "A-Positive"
+    BPlus = "B-Positive"
+    ABPlus = "AB-Positive"
+
+
+class SEX(Enum):
+    M="MALE"
+    F="FEMALE"
+    O="OTHERS"
+
+
+
 
 class User(models.Model):
-    User_id = models.CharField(primary_key=True, unique=True, max_length=30)
-    Password = models.CharField(max_length=16)
-    Name = models.CharField(max_length=50)
-    Date_of_birth = models.DateField()
-    Sex = models.CharField(max_length=10)
-    Address = models.CharField(max_length=200)
-    City = models.CharField(max_length=20)
-    State = models.CharField(max_length=20)
-    Contact = models.IntegerField()
-    Email = models.EmailField()
-    Photo = models.ImageField()
-    Category = models.CharField(max_length=10)
-    Blood_group = models.CharField(max_length=3,null=True)
+    user_id = models.CharField(primary_key=True, unique=True, max_length=30)
+    password = models.CharField(max_length=256)
+    name = models.CharField(max_length=50)
+    date_of_birth = models.DateField()
+    sex = [(tag,tag.value) for tag in SEX]
+    address = models.CharField(max_length=200)
+    city = models.CharField(max_length=20)
+    state = models.CharField(max_length=20)
+    contact = models.IntegerField()
+    email = models.EmailField()
+    photo = models.ImageField()
+    category = models.CharField(max_length=10)
+    blood_group = [(tag,tag.value) for tag in BloodGroup]
+    user_type= [(tag,tag.value) for tag in UserType]
 
