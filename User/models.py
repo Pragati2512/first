@@ -27,6 +27,12 @@ class SEX(Enum):
     F="FEMALE"
     O="OTHERS"
 
+class Catogery(Enum):
+    GEN="GENERAL"
+    OBC="OTHER BACKWARD CLASS"
+    SC="SCHEDULE CASTE"
+    ST="SCHUDLE TRIBE"
+
 
 
 
@@ -42,7 +48,9 @@ class User(models.Model):
     contact = models.IntegerField()
     email = models.EmailField()
     photo = models.ImageField()
-    category = models.CharField(max_length=10)
+    category = [(tag,tag.value) for tag in Catogery]
     blood_group = [(tag,tag.value) for tag in BloodGroup]
     user_type= [(tag,tag.value) for tag in UserType]
+
+
 
