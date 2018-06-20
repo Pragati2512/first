@@ -8,7 +8,7 @@ class UserType(Enum):
     STD="STUDENT"
     FLT="FACULTY"
     USR="USER"
-    ALM="ALUMANY"
+    ALM="ALUMNI"
 # enum for blood group
 
 class BloodGroup(Enum):
@@ -22,7 +22,7 @@ class BloodGroup(Enum):
     ABPlus = "AB-Positive"
 
 
-class SEX(Enum):
+class Gender(Enum):
     M="MALE"
     F="FEMALE"
     O="OTHERS"
@@ -41,7 +41,7 @@ class User(models.Model):
     password = models.CharField(max_length=256)
     name = models.CharField(max_length=50)
     date_of_birth = models.DateField()
-    sex = [(tag,tag.value) for tag in SEX]
+    gender = [(tag,tag.value) for tag in Gender]
     address = models.CharField(max_length=200)
     city = models.CharField(max_length=20)
     state = models.CharField(max_length=20)
